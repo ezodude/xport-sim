@@ -9,10 +9,28 @@ XPORT HTTP Request/Response Serial Protocol:
   Returns 'C' to communicate a connection has been established.
   example: C82.165.199.35/80\n -> 'C'
   
-- Do Http Request: GET <HTTP PATH minus Host Name> <HTTP PROTOCOL VERSION>\nHOST:<Server Name>\n\n
+- Do Http Request: GET <HTTP PATH minus Host Name> <HTTP PROTOCOL VERSION>\n
   example: GET /~myaccount/scraper.php HTTP/1.0\nHOST:example.com\n\n
 
 Serial Notifications:
 
 - 'D': Disconnected - connection with the server has been lost.
 - 'C': Connection Established - a connection with the server has been established.
+
+----
+
+This class depends on both the net/telnet library and the ruby-serialport gem.
+Unfortunately, the ruby-serialport gem is NOT yet Ruby 1.9 compatible.
+As such this code is also NOT yet Ruby 1.9 compatible.
+
+----
+
+Here's how to start listening to incoming serial port messages:
+
+Set Serial port:
+SERIAL_PORT = "/dev/tty.usbserial-A7007cvp"
+
+Set a Baud Rate:
+ex. of BAUD_RATE = 9600 # bits per sec
+
+XportSimulator.new(SERIAL_PORT_ID, BAUD_RATE).listen

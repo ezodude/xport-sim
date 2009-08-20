@@ -13,7 +13,6 @@ end
 
 class XportSimulatorTest < Test::Unit::TestCase
   IP_ADDRESS = "0.0.0.0"
-  HOST = "example.com"
   PORT_NO = "9999"
   
   TELNET_WAITTIME = 2.0
@@ -110,8 +109,8 @@ class XportSimulatorTest < Test::Unit::TestCase
     stub(@testee).connected? {true}
     stub(@testee).telnet_connection {@fake_telnet_connection}
     
-    stub(@fake_serial_port).gets { "GET /get/request/path HTTP/1.1\nHOST:#{HOST}\n\n" }
-    stub(@fake_telnet_connection).cmd("GET /get/request/path HTTP/1.1\nHOST:#{HOST}\n") { expected_http_response }
+    stub(@fake_serial_port).gets { "GET /get/request/path HTTP/1.1\n" }
+    stub(@fake_telnet_connection).cmd("GET /get/request/path HTTP/1.1\n") { expected_http_response }
     
     mock(@fake_serial_port).write(expected_http_response)
     @testee.listen(once=true) 
@@ -125,8 +124,8 @@ class XportSimulatorTest < Test::Unit::TestCase
     
     @testee.listen(once=true)
     
-    stub(@fake_serial_port).gets { "GET /get/request/path HTTP/1.1\nHOST:#{HOST}\n\n" }
-    stub(@fake_telnet_connection).cmd("GET /get/request/path HTTP/1.1\nHOST:#{HOST}\n") { "some response" }
+    stub(@fake_serial_port).gets { "GET /get/request/path HTTP/1.1\n" }
+    stub(@fake_telnet_connection).cmd("GET /get/request/path HTTP/1.1\n") { "some response" }
     
     mock(@fake_telnet_connection).close
     @testee.listen(once=true)

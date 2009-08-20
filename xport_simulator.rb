@@ -64,8 +64,3 @@ private
     [connection_result, connected_result]
   end
 end
-
-SERIAL_PORT_ID = "/dev/tty.usbserial-A7007cvp"
-BAUD_RATE = 9600 # bits per sec
-
-XportSimulator.new(SERIAL_PORT_ID, BAUD_RATE).listen
