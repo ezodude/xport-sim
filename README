@@ -1,0 +1,18 @@
+This is an implementation of an XPORT hardware ethernet interface in ruby.
+It allows a programmer to stub out the real hardware unit to enable rapid prototyping.
+
+The XportSimulator simulates an XPORT to allow network/web connectivity using commands received from a serial port interface.
+
+XPORT HTTP Request/Response Serial Protocol:
+
+- Connect: C<IP ADDRESS>/<PORT NO>\n
+  Returns 'C' to communicate a connection has been established.
+  example: C82.165.199.35/80\n -> 'C'
+  
+- Do Http Request: GET <HTTP PATH minus Host Name> <HTTP PROTOCOL VERSION>\nHOST:<Server Name>\n\n
+  example: GET /~myaccount/scraper.php HTTP/1.0\nHOST:example.com\n\n
+
+Serial Notifications:
+
+- 'D': Disconnected - connection with the server has been lost.
+- 'C': Connection Established - a connection with the server has been established.
