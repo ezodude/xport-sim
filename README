@@ -10,7 +10,7 @@ XPORT HTTP Request/Response Serial Protocol:
   example: C82.165.199.35/80\n -> 'C'
   
 - Do Http Request: GET <HTTP PATH minus Host Name> <HTTP PROTOCOL VERSION>\n
-  example: GET /~myaccount/scraper.php HTTP/1.0\nHOST:example.com\n\n
+  example: GET /~myaccount/scraper.php HTTP/1.0\n
 
 Serial Notifications:
 
